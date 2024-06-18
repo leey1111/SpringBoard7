@@ -19,6 +19,9 @@ public interface BoardService {
 	public BoardVO InfoALL(int bno) throws Exception;
 
 	// 저장된 정보 수정
-	public BoardVO updateBoard(BoardVO vo) throws Exception; 
+	public BoardVO updateBoard(BoardVO vo) throws Exception;
+
+	// 저장된 정보 삭제
+	public BoardVO deleteBoard(int bno) throws Exception; 
 
 }
