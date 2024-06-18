@@ -36,6 +36,23 @@ public class BoardServiceImpl implements BoardService{
 		
 		return bdao.listALL();
 	}
+
+	@Override
+	public void updateReadCnt(int bno) throws Exception {
+		
+		logger.debug("updateReadCnt(int bno) 실행");
+		logger.debug("bno ; "+ bno);
+		
+		bdao.updateReadCnt(bno);
+		
+	}
+
+	@Override
+	public BoardVO InfoALL(int bno) throws Exception {
+		logger.debug("게시판 글본문 정보 조회");
+		
+		return bdao.InfoALL(bno);
+	}
 	
 	
 	
