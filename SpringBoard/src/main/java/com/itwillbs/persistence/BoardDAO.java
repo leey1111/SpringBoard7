@@ -18,4 +18,7 @@ public interface BoardDAO {
 	// 글 본문 조회
 	public BoardVO InfoALL(int bno) throws Exception;
 
+	// 글 본문 수정
+	public BoardVO updateBoard(BoardVO vo) throws Exception;
+
 }
