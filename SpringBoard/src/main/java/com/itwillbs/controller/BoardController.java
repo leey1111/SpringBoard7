@@ -3,14 +3,17 @@ package com.itwillbs.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwillbs.domain.BoardVO;
@@ -72,7 +75,35 @@ public class BoardController {
 		return "/board/list";
 	}
 	
-	// 게시판 글 목록 조회 - POST
+	// 게시판 본문 보기 - readGET
+	@RequestMapping(value = "/read", method = RequestMethod.GET)
+	public void readGET(@RequestParam("bno") int bno, Model model) throws Exception {
+			
+//		@ModelAttribute("bno") int bno
+//		=> 주소줄에 있는 데이터를 가져와서 사용, 연결된 뷰페이지로 이동 ${bno}
+//			request.getPatameter("bno") + request.setPatameter();
+//		=> 1:N 관계에서 사용 (N - bean(객체), collection)
+		
+//		@RequestParam("bno") int bno
+//		=> request.getPatameter("bno") 와 동일함, 자동형변횐 포함 (문자, 숫자, 날짜)
+//		=> 1:1 관계에서 사용
+		
+		logger.debug("readGET() 실행");
+		
+		// 전달정보 저장
+		logger.debug("bno : "+ bno);
+		
+		// 글 조회(읽음) 카운트 증가=> 조회수 1 증가
+		bService.updateReadCnt(bno);
+		
+		// DAO 저장된 정보 가져오기
+		BoardVO resultVO = bService.InfoALL(bno);
+		
+		// 연결된 뷰페이지로 정보 전달
+		model.addAttribute("resultVO", resultVO);
+
+		
+	}
 	
 
 }

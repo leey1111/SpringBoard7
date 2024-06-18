@@ -17,6 +17,17 @@
  		select * from tbl_board
  	</select>
  	
+ 	<!-- 글 조회수 1증가 -->
+ 	<update id="updateReadCnt">
+ 		update tbl_board set viewcnt = viewcnt+1
+ 		where bno = #{bno}
+ 	</update>
+ 	
+ 	<select id="boardInfo" resultType="BoardVO">
+ 		select * from tbl_board
+ 		where bno = #{bno}
+ 	</select>
+ 	
  </mapper>
 
 
