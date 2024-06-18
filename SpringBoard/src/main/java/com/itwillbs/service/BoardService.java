@@ -16,6 +16,9 @@ public interface BoardService {
 	public void updateReadCnt(int bno) throws Exception;
 
 	// 저장된 정보 (본문) 조회
-	public BoardVO InfoALL(int bno) throws Exception; 
+	public BoardVO InfoALL(int bno) throws Exception;
+
+	// 저장된 정보 수정
+	public BoardVO updateBoard(BoardVO vo) throws Exception; 
 
 }

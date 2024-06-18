@@ -52,9 +52,16 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public BoardVO InfoALL(int bno) throws Exception {
-		logger.debug("InfoALL() 실행");
+		logger.debug("InfoALL(bno) 실행");
 
 		return sqlSession.selectOne(Namespace +"boardInfo", bno);
+	}
+
+	@Override
+	public BoardVO updateBoard(BoardVO vo) throws Exception {
+		logger.debug("updateBoard(vo) 실행");
+		
+		return sqlSession.selectOne(Namespace +"updateBoard", vo);
 	}
 	
 	

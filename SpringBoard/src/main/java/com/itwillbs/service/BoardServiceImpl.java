@@ -53,6 +53,13 @@ public class BoardServiceImpl implements BoardService{
 		
 		return bdao.InfoALL(bno);
 	}
+
+	@Override
+	public BoardVO updateBoard(BoardVO vo) throws Exception{
+		logger.debug("게시판 글 정보 수정");
+		
+		return bdao.updateBoard(vo);
+	}
 	
 	
 	
