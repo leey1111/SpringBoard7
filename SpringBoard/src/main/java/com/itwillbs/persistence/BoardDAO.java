@@ -21,4 +21,7 @@ public interface BoardDAO {
 	// 글 본문 수정
 	public BoardVO updateBoard(BoardVO vo) throws Exception;
 
+	// 글 본문 삭제
+	public BoardVO deleteBoard(int bno) throws Exception;
+
 }

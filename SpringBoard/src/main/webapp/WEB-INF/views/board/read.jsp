@@ -52,6 +52,15 @@
 			$("form[role='form']").attr("method", "get")
 			$("form[role='form']").submit();
 		});
+
+		// '삭제'버튼 클릭 시 삭제 페이지로 이동
+		$(".btn-warning").click(function(){
+// 			alert("삭제버튼 클릭");
+			
+			// 수정 페이지로 이동(+bno)
+			$("form[role='form']").attr("action", "/board/delete")
+			$("form[role='form']").submit();
+		});
 		
 		// '리스트'버튼 클릭 시 리스트 페이지로 이동
 		$(".btn-primary").click(function(){

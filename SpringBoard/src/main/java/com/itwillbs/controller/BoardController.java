@@ -3,14 +3,11 @@ package com.itwillbs.controller;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -131,12 +128,31 @@ public class BoardController {
 		logger.debug("수정할 내용 : {}"+ vo);
 		
 		// 서비스 -  DAO 글 내용 수정 동작
-		bService.updateBoard(vo);
+		BoardVO resultVO = bService.updateBoard(vo);
+		logger.debug("resultVO : {}", resultVO);
 		
 		// 글 상태 정보 전달
 		rttr.addFlashAttribute("msg", "updateOK");
 		
 		// 페이지 이동(list.jsp)
+		return "redirect:/board/listALL";
+	}
+	
+	// 게시판 글 삭제하기 - POST
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String modifyPOST( /*@RequestParam("bno")*/ int bno, RedirectAttributes rttr) throws Exception{
+		logger.debug("modifyPOST()");
+		
+		// 전달정보 bno 저장
+		logger.debug("bno : "+ bno);
+		
+		// 서비스 -  DAO 글 정보 조회 동작
+		BoardVO resultVO = bService.deleteBoard(bno);
+		logger.debug("resultVO : {}", resultVO);
+		
+		// 글 상태 정보 전달
+		rttr.addFlashAttribute("msg", "deleteOK");
+		
 		return "redirect:/board/listALL";
 	}
 }
