@@ -3,6 +3,7 @@ package com.itwillbs.persistence;
 import java.util.List;
 
 import com.itwillbs.domain.BoardVO;
+import com.itwillbs.domain.Criteria;
 
 public interface BoardDAO {
 	
@@ -22,6 +23,11 @@ public interface BoardDAO {
 	public BoardVO updateBoard(BoardVO vo) throws Exception;
 
 	// 글 본문 삭제
-	public BoardVO deleteBoard(int bno) throws Exception;
+	public BoardVO deleteBoard(int bno);
+
+	// 게시판 페이징 처리
+	public List<BoardVO> listPage(int page) throws Exception;
+	
+	public List<BoardVO> listPage(Criteria cri) throws Exception;
 
 }
