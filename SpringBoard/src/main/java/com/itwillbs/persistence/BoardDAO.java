@@ -30,4 +30,6 @@ public interface BoardDAO {
 	
 	public List<BoardVO> listPage(Criteria cri) throws Exception;
 
+	public int getTotalCount() throws Exception;
+
 }

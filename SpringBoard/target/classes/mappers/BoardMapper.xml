@@ -61,6 +61,11 @@
  		]]>
  	</select>
  	
+ 	<!-- 게시판 총 글의 개수 (페이징처리) -->
+ 	<select id="totalCount" resultType="int">
+ 		select count(bno)from tbl_board
+ 	</select>
+ 	
  </mapper>
 
 

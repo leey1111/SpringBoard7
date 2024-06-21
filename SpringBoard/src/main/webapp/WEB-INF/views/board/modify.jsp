@@ -12,7 +12,9 @@
 	</div>
 
 	<form role="form" action="" method="post">
-
+	
+		<input type="hidden" name="page" value="${param.page }">
+		<input type="hidden" name="pageSize" value="${param.pageSIze }">
 
 		<div class="box-body">
 			<div class="form-group">
@@ -42,17 +44,17 @@
 
 	$(document).ready(function(){
 		
-		// '취소하기'버튼 클릭 시 리스트 페이지로 이동
+		// '수정하기'버튼 클릭 시 리스트 페이지로 이동
 		$(".btn-danger").click(function(){
 // 			alert("수정버튼 클릭");
 			
-			location.href="/board/listALL";
+			location.href="/board/listPage";
 		});
 		
-		// '리스트'버튼 클릭 시 리스트 페이지로 이동
+		// '취소하기'버튼 클릭 시 리스트 페이지로 이동
 		$(".btn-warning").click(function(){
-			alert("클릭");
-			location.href="/board/listALL";
+// 			alert("클릭");
+			location.href="/board/listPage";
 		});
 		
 	});

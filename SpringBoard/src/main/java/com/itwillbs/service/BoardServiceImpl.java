@@ -76,6 +76,13 @@ public class BoardServiceImpl implements BoardService{
 		
 		return bdao.listPage(cri);
 	}
+
+	@Override
+	public int getTotalCount() throws Exception {
+		logger.debug("게시판 글목록 개수 (페이징 처리) 조회");
+		
+		return bdao.getTotalCount();
+	}
 	
 	
 	
