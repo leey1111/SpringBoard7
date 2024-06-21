@@ -3,9 +3,11 @@ package com.itwillbs.service;
 import java.util.List;
 
 import com.itwillbs.domain.BoardVO;
+import com.itwillbs.domain.Criteria;
 
 public interface BoardService {
 	
+
 	// 글쓰기 동작
 	public void regist(BoardVO vo) throws Exception;
 	
@@ -23,5 +25,11 @@ public interface BoardService {
 
 	// 저장된 정보 삭제
 	public BoardVO deleteBoard(int bno) throws Exception; 
+	
+	// 글 목록 조회 (페이징 처리)
+	public List<BoardVO> listPage(Criteria cri) throws Exception;
+
+	// 글 목록 개수 조회 (페이징 처리)
+	public int getTotalCount() throws Exception;
 
 }

@@ -33,32 +33,46 @@
  	java에서 지원하는 어노테이션
  	-> 특정 프레임워크에 비종속적
  	찾는 순서 : Autowired -> root-context					  
- 				-> [이름](sqlSession) - [타입](SqlSession) - [@Qualitier] - 주입 실패
- 	사용 범위 : 멤버변수, setter()
- 	
- 	
- 	@Qualitier : 객체의 별명(주랍하는 객체가 하나 이상일 때 구분
- 	
- 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
- 		<qualifier value="d1"/>
+ 				-> [이름](sqlSession) - [타입](SqlSession) -> [@Qualifier] -> 주입 실패
+    사용범위 : 멤버변수, setter()
+    
+    
+    
+    @Qualifier : 객체의 별명(주입하는 객체가 하나 이상일때 구분용)
+    
+	<bean id="dataSource"
+	      class="com.zaxxer.hikari.HikariDataSource">
+	      ....
+	      <qualifier value="d1"/>
 	</bean>
-
- 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
- 		<qualifier value="d2"/>
+	<bean id="dataSource"
+	      class="com.zaxxer.hikari.HikariDataSource">
+	      ....
+	      <qualifier value="d2"/>
 	</bean>
-
-	@Inject
-	@Autowired	@Aualifier("d1")
-	private DataSource ds;
 	
- - @ModelAttribute("bno") int bno
-	=> 주소줄에 있는 데이터를 가져와서 사용, 연결된 뷰페이지로 이동 ${bno}
-		request.getPatameter("bno") + request.setPatameter();
-	=> 1:N 관계에서 사용 (N - bean(객체), collection)
-			
- - @RequestParam("bno") int bno
-	=> request.getPatameter("bno") 와 동일함, 자동형변횐 포함 (문자, 숫자, 날짜)
-	=> 1:1 관계에서 사용
+	@Inject
+	@Autowired    @Qualifier("d1")
+	private DataSource ds;
+ 				
+ 				
+ 				
+ - 이전 펭지(pre)
+ 	prev= startPage == 1? false: true:
+ 	pre startPagge != 1;
+ 
+ - 다음 페이지
+ 	necr = endPage * 페이지당 출력
+ 
+ ** 총 123개 / 페이지당 10개씩 출력
+ 	총 페이지 13 / 페이지 블럭 10개
+ 
+ - 3페이지
+ 	=> startPage : 1, endPage : 10, next : O, prev : X
+ - 10페이지
+ 	=> startPage : 1, endPage : 10, next : O, prev : X
+ - 12페이지
+ 	=> startPage : 11, endPage : 13, next : X, prev : O
 	
 	
 	

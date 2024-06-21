@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.BoardVO;
+import com.itwillbs.domain.Criteria;
 
 import jdk.dynalink.Namespace;
 
@@ -65,10 +66,39 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public BoardVO deleteBoard(int bno) throws Exception {
+	public BoardVO deleteBoard(int bno) {
 		logger.debug("deleteBoard(bno) 실행");
 		
 		return sqlSession.selectOne(Namespace +"deleteBoard", bno);
+	}
+
+	@Override
+	public List<BoardVO> listPage(int page) throws Exception {
+		logger.debug("listPage(page) 실행");
+		
+		// 페이징 처리정보 계산
+		// (page-1)*10
+		if(page <= 0) {
+			page = 1;
+		}
+		
+		page = (page-1)*10;
+		
+		return sqlSession.selectList(Namespace +"listPage", page);
+	}
+
+	@Override
+	public List<BoardVO> listPage(Criteria cri) throws Exception {
+		logger.debug("listPage(cri) 실행");
+		
+		return sqlSession.selectList(Namespace +"listPage2", cri);
+	}
+
+	@Override
+	public int getTotalCount() throws Exception {
+		logger.debug("getTotalCount() 실행");
+		
+		return sqlSession.selectOne(Namespace +"totalCount");
 	}
 	
 	
